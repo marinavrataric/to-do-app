@@ -9,9 +9,11 @@ module.exports = {
     port: 9000,
     historyApiFallback: true,
   },
-  entry: "./src/index.js",
+  entry: path.join(__dirname, "src/index.js"),
   output: {
     filename: "dist/kakogodhoces.js",
   },
-  plugins: [new HtmlWebpackPlugin({ template: "./src/index.html" })],
+  plugins: [
+    new HtmlWebpackPlugin({ template: path.join(__dirname, "src/index.html") }),
+  ],
 };
