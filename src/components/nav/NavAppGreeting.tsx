@@ -27,6 +27,7 @@ const Select = styled.select`
   padding: 7px 15px;
   font-size: 15px;
   margin-right: 15px;
+  z-index: 1;
 `;
 
 const NavAppGreeting = () => {

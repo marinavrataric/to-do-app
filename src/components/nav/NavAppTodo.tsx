@@ -26,7 +26,9 @@ const UserName = styled.span`
 `;
 
 const Dropdown = styled.div`
-
+  font-size: 25px;
+  color: white;
+  margin-right: 10px;
 `;
 
 const NavAppTodo = () => {
@@ -34,9 +36,11 @@ const NavAppTodo = () => {
 
   return (
     <Nav>
-      <UserName>{user.userName} Marina</UserName>
+      <UserName>{user.userName}</UserName>
       <AppTitle>TO-DO List App</AppTitle>
-      <Dropdown>text123</Dropdown>
+      <Dropdown>
+        <i className="fa fa-bars" aria-hidden="true"></i>
+      </Dropdown>
     </Nav>
   );
 };

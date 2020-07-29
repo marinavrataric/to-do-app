@@ -27,7 +27,7 @@ const Greeting = () => {
   return (
     <CenterDiv>
       <Title>Enter your name</Title>
-      <InputForm placeholder="Your name..." onChange={handleChangeInput} />
+      <InputForm value={user.userName} placeholder="Your name..." onChange={handleChangeInput} />
       <ButtonForm buttonName="Continue" onClick={handleLoginUser} />
     </CenterDiv>
   );

@@ -16,7 +16,7 @@ const GlobalStyle = createGlobalStyle`
 
 function App() {
   const [user, setUser] = useState<UserInterface>({
-    isLogged: true,
+    isLogged: false,
     userName: "",
   });
 

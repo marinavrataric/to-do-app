@@ -5,7 +5,7 @@ import { colors } from "../../constants/styleConstants";
 
 const ToDoContainer = styled.div`
   border: 1px ${colors.blue} solid;
-  padding: 0;
+  padding: 10px 0;
   width: 300px;
   left: 0;
   right: 0;
@@ -23,6 +23,8 @@ interface ToDoTextProps {
 }
 
 const ToDoText = styled.p`
+  position: absolute;
+  margin-left: 33px;
   font-size: 14px;
   text-decoration: ${(props: ToDoTextProps) =>
     props.isChecked && "line-through"};
@@ -38,7 +40,8 @@ const DeleteButton = styled.button`
 `;
 
 const CheckkBox = styled.input`
-  margin-left: 6px;
+  margin-left: 10px;
+  z-index: 1;
 `;
 
 interface Props {
