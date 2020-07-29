@@ -1,4 +1,4 @@
-import React, { ChangeEvent, FormEvent } from "react";
+import React, { ChangeEvent } from "react";
 import styled from "styled-components";
 
 const Input = styled.input`
@@ -10,10 +10,11 @@ const Input = styled.input`
 interface Props {
   placeholder: string;
   onChange: (e: ChangeEvent<HTMLInputElement>) => void;
+  value?: string
 }
 
 const InputForm = (props: Props) => {
-  return <Input placeholder={props.placeholder} onChange={props.onChange} />;
+  return <Input value={props.value || ''} placeholder={props.placeholder} onChange={props.onChange} />;
 };
 
 export default InputForm;

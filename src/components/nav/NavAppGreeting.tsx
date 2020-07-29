@@ -7,20 +7,25 @@ const Nav = styled.nav`
   background-color: ${colors.darkBlue};
   margin: 0;
   padding: 20px 0;
+  display: flex;
+  justify-content: flex-end;
+  position: relative;
 `;
 
 const AppTitle = styled.h2`
   color: white;
   margin: 0;
-  display: inline-block;
   text-align: center;
-  margin-left: 45%;
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 50%;
+  transform: translate(0, -50%);
 `;
 
 const Select = styled.select`
   padding: 7px 15px;
   font-size: 15px;
-  float: right;
   margin-right: 15px;
 `;
 

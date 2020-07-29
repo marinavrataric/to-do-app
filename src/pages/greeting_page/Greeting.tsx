@@ -5,21 +5,7 @@ import ButtonForm from "../../components/button/ButtonForm";
 import { AppContext } from "../../context/AppContext";
 import { useHistory } from 'react-router-dom';
 import { route } from "../../constants/generalContants";
-
-const CenterDiv = styled.div`
-  width: 300px;
-  height: 300px;
-  left: 0;
-  right: 0;
-  top: 0;
-  bottom: 0;
-  margin: auto;
-  max-width: 100%;
-  max-height: 100%;
-  overflow: auto;
-  position: absolute;
-  text-align: center;
-`;
+import { CenterDiv } from "../../constants/styleConstants";
 
 const Title = styled.h2`
   font-size: 20px;
