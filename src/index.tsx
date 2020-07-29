@@ -1,14 +1,11 @@
 import React from "react";
 import ReactDOM from "react-dom";
-
-const App: React.FunctionComponent<{ message: string }> = ({ message }) => (
-  <p>
-    Hello world,
-    {message}
-  </p>
-);
+import App from './App';
+import {BrowserRouter as Router} from 'react-router-dom';
 
 ReactDOM.render(
-  <App message="Hello oooo   oo aa" />,
+  <Router>
+    <App />
+  </Router>,
   document.getElementById("root")
 );

@@ -23,23 +23,19 @@ module.exports = {
     sourceType: 'module',
   },
   plugins: ['react', '@typescript-eslint'],
-    settings: {
-      "import/resolver": {
-        "node": {
-          "paths": ["src"]
-        }
+  settings: {
+    "import/resolver": {
+      "node": {
+        "extensions": [".js", ".jsx", ".ts", ".tsx"]
       }
-    },
-  
+    }
+  },
   rules: {
+    'import/no-unresolved': ['off'],
     'react/jsx-filename-extension': 0,
     'react/prop-types': 0,
     'react/jsx-uses-react': 'error',
     'react/jsx-uses-vars': 'error',
     '@typescript-eslint/rule-name': 'error',
-    "import/no-unresolved": [
-      2, 
-      { "caseSensitive": false },
-   ],
   },
 };
