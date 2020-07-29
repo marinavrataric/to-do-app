@@ -1,7 +1,7 @@
 import React, { useContext } from "react";
 import styled from "styled-components";
 import { colors } from "../../constants/styleConstants";
-import { UserInterface } from "../../constants/UserInterface";
+import { UserInterface } from "../../interfaces/UserInterface";
 import { AppContext } from "../../context/AppContext";
 
 const Nav = styled.nav`

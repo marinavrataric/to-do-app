@@ -3,6 +3,8 @@ import styled from "styled-components";
 import InputForm from "../../components/input/InputForm";
 import ButtonForm from "../../components/button/ButtonForm";
 import { AppContext } from "../../context/AppContext";
+import { useHistory } from 'react-router-dom';
+import { route } from "../../constants/generalContants";
 
 const CenterDiv = styled.div`
   width: 300px;
@@ -25,6 +27,7 @@ const Title = styled.h2`
 
 const Greeting = () => {
   const { user, setUser } = useContext(AppContext);
+  const history = useHistory();
 
   const handleChangeInput = (e: ChangeEvent<HTMLInputElement>) => {
     setUser({...user, userName: e.target.value});
@@ -32,6 +35,7 @@ const Greeting = () => {
 
   const handleLoginUser = () => {
     user.userName && setUser({...user, isLogged: true});
+    history.push(route.home)
   };
 
   return (

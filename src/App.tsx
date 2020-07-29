@@ -4,7 +4,7 @@ import Routes from "./routes/Routes";
 import { AppContext } from "./context/AppContext";
 import NavAppTodo from "./components/nav/NavAppTodo";
 import NavAppGreeting from "./components/nav/NavAppGreeting";
-import { UserInterface } from "./constants/UserInterface";
+import { UserInterface } from "./interfaces/UserInterface";
 
 const GlobalStyle = createGlobalStyle`
   body {
