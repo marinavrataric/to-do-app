@@ -1,8 +1,11 @@
-import styled from "styled-components";
+import { darkTheme } from "./themes";
+import styled, { createGlobalStyle } from "styled-components";
 
 export const colors = {
   darkBlue: "#36475B",
   blue: "#0081A1",
+  white: "#FFFFFF",
+  darkGray: "#292C30",
 };
 
 export const CenterDiv = styled.div`
@@ -18,4 +21,16 @@ export const CenterDiv = styled.div`
   overflow: auto;
   position: absolute;
   text-align: center;
+`;
+
+type ThemeType = typeof darkTheme;
+
+export const GlobalStyle = createGlobalStyle<{ theme: ThemeType }>`
+body {
+  margin: 0;
+  padding: 0;
+  font-family: Open Sans;
+  background: ${({ theme }) => theme.body};
+  color: ${({ theme }) => theme.text};
+}
 `;

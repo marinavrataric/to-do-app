@@ -1,13 +1,12 @@
 import React, { useContext } from "react";
 import styled from "styled-components";
-import { colors } from "../../constants/styleConstants";
 import { AppContext } from "../../context/AppContext";
 import { messageIds } from "../../constants/generalContants";
 
 const { FormattedMessage } = require("react-intl");
 
 const Nav = styled.nav`
-  background-color: ${colors.darkBlue};
+  background-color: ${({ theme }) => theme.nav};
   margin: 0;
   padding: 20px 0;
   position: relative;
@@ -35,13 +34,24 @@ const Dropdown = styled.div`
 `;
 
 const NavAppTodo = () => {
-  const { user } = useContext(AppContext);
+  const { user, setTheme, theme } = useContext(AppContext);
+
+  const toggleTheme = () => {
+    if (theme === "light") setTheme("dark");
+    else setTheme("light");
+  };
+
+  const openMenu = () => {
+    toggleTheme();
+  };
 
   return (
     <Nav>
       <UserName>{user.userName}</UserName>
-      <AppTitle><FormattedMessage id={messageIds.title}/></AppTitle>
-      <Dropdown>
+      <AppTitle>
+        <FormattedMessage id={messageIds.title} />
+      </AppTitle>
+      <Dropdown onClick={openMenu}>
         <i className="fa fa-bars" aria-hidden="true"></i>
       </Dropdown>
     </Nav>

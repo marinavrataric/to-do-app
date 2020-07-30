@@ -1,20 +1,14 @@
 import React, { useState } from "react";
-import { createGlobalStyle } from "styled-components";
+import { ThemeProvider } from "styled-components";
 import Routes from "./routes/Routes";
 import { AppContext } from "./context/AppContext";
 import NavAppTodo from "./components/nav/NavAppTodo";
 import NavAppGreeting from "./components/nav/NavAppGreeting";
 import { UserInterface } from "./interfaces/UserInterface";
 import { messages } from "./constants/generalContants";
-const {IntlProvider}  = require("react-intl");
-
-const GlobalStyle = createGlobalStyle`
-  body {
-    margin: 0;
-    padding: 0;
-    font-family: Open Sans;
-  }
-`;
+import { GlobalStyle } from "./constants/styleConstants";
+import { lightTheme, darkTheme } from "./constants/themes";
+const { IntlProvider } = require("react-intl");
 
 function App() {
   const [user, setUser] = useState<UserInterface>({
@@ -22,18 +16,30 @@ function App() {
     userName: "",
   });
 
-  const [locale, setLocale] = useState('en')
-  
+  const [locale, setLocale] = useState("en");
+  const [theme, setTheme] = useState("light");
+
   return (
-    <IntlProvider locale={locale} messages={messages[locale]}>
-    <div>
+    <ThemeProvider theme={theme === "light" ? lightTheme : darkTheme}>
       <GlobalStyle />
-      <AppContext.Provider value={{ user, setUser, locale, setLocale }}>
-        {user.isLogged ? <NavAppTodo /> : <NavAppGreeting />}
-        <Routes />
-      </AppContext.Provider>
-    </div>
-    </IntlProvider>
+      <IntlProvider locale={locale} messages={messages[locale]}>
+        <div>
+          <AppContext.Provider
+            value={{
+              user,
+              setUser,
+              locale,
+              setLocale,
+              theme,
+              setTheme,
+            }}
+          >
+            {user.isLogged ? <NavAppTodo /> : <NavAppGreeting />}
+            <Routes />
+          </AppContext.Provider>
+        </div>
+      </IntlProvider>
+    </ThemeProvider>
   );
 }
 

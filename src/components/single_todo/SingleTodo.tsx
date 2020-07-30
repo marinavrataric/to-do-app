@@ -4,7 +4,7 @@ import styled from "styled-components";
 import { colors } from "../../constants/styleConstants";
 
 const ToDoContainer = styled.div`
-  border: 1px ${colors.blue} solid;
+  border: 2px ${colors.blue} solid;
   padding: 10px 0;
   width: 300px;
   left: 0;
