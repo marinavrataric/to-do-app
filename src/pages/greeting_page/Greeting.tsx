@@ -1,4 +1,4 @@
-import React, { ChangeEvent, useContext } from "react";
+import React, { ChangeEvent, useContext, useState } from "react";
 import styled from "styled-components";
 import InputForm from "../../components/input/InputForm";
 import ButtonForm from "../../components/button/ButtonForm";
@@ -16,14 +16,17 @@ const Title = styled.h2`
 const Greeting = () => {
   const { user, setUser } = useContext(AppContext);
   const history = useHistory();
+  const [nameInputText, setNameInputText] = useState("");
 
   const handleChangeInput = (e: ChangeEvent<HTMLInputElement>) => {
-    setUser({ ...user, userName: e.target.value });
+    setNameInputText(e.target.value)
+    setUser({ ...user, userName: nameInputText });
   };
 
   const handleLoginUser = () => {
     user.userName && setUser({ ...user, isLogged: true });
     history.push(route.home);
+    setNameInputText('')
   };
 
   const placeholder = useIntl().formatMessage({id: messageIds.namePlaceholder})
@@ -35,7 +38,7 @@ const Greeting = () => {
         <FormattedMessage id={messageIds.inputName} />
       </Title>
       <InputForm
-        value={user.userName}
+        value={nameInputText}
         placeholder={placeholder}
         onChange={handleChangeInput}
       />
