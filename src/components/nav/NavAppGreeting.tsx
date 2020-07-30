@@ -1,7 +1,9 @@
-import React, { useState, ChangeEvent } from "react";
+import React, { ChangeEvent, useContext } from "react";
 import styled from "styled-components";
 import { colors } from "../../constants/styleConstants";
-import { languages } from "../../constants/generalContants";
+import { languages, messageIds } from "../../constants/generalContants";
+import { AppContext } from "../../context/AppContext";
+const {FormattedMessage} = require('react-intl')
 
 const Nav = styled.nav`
   background-color: ${colors.darkBlue};
@@ -31,7 +33,7 @@ const Select = styled.select`
 `;
 
 const NavAppGreeting = () => {
-  const [selectedLanguage, setSelectedLanguage] = useState("EN");
+  const {locale, setLocale} = useContext(AppContext)
 
   const languageDropdown = languages.map((language: string, index: number) => {
     return (
@@ -42,12 +44,12 @@ const NavAppGreeting = () => {
   });
 
   const chooseLanguage = (e: ChangeEvent<HTMLSelectElement>) =>
-    setSelectedLanguage(e.target.value);
+    setLocale(e.target.value);
 
   return (
     <Nav>
-      <AppTitle>TO-DO List App</AppTitle>
-      <Select value={selectedLanguage} onChange={chooseLanguage}>
+      <AppTitle><FormattedMessage id={messageIds.title}/></AppTitle>
+      <Select value={locale} onChange={chooseLanguage}>
         {languageDropdown}
       </Select>
     </Nav>

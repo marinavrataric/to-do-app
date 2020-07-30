@@ -2,6 +2,9 @@ import React, { useContext } from "react";
 import styled from "styled-components";
 import { colors } from "../../constants/styleConstants";
 import { AppContext } from "../../context/AppContext";
+import { messageIds } from "../../constants/generalContants";
+
+const { FormattedMessage } = require("react-intl");
 
 const Nav = styled.nav`
   background-color: ${colors.darkBlue};
@@ -37,7 +40,7 @@ const NavAppTodo = () => {
   return (
     <Nav>
       <UserName>{user.userName}</UserName>
-      <AppTitle>TO-DO List App</AppTitle>
+      <AppTitle><FormattedMessage id={messageIds.title}/></AppTitle>
       <Dropdown>
         <i className="fa fa-bars" aria-hidden="true"></i>
       </Dropdown>

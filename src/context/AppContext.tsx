@@ -6,4 +6,6 @@ export const AppContext = createContext({
     userName: "",
   },
   setUser: (user: { isLogged: boolean; userName: string }) => {},
+  locale: '',
+  setLocale: (locale: string) => {}
 });
