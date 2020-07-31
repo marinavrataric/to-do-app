@@ -13,40 +13,49 @@ const Title = styled.h2`
   font-size: 20px;
 `;
 
+const Container = styled.div`
+  height: 100vh;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`;
+
 const Greeting = () => {
-  const { user, setUser, theme } = useContext(AppContext);
+  const { setUser, theme } = useContext(AppContext);
   const history = useHistory();
   const [nameInputText, setNameInputText] = useState("");
 
   const handleChangeInput = (e: ChangeEvent<HTMLInputElement>) => {
-    setNameInputText(e.target.value)
+    setNameInputText(e.target.value);
   };
 
   const handleLoginUser = () => {
     setUser({ userName: nameInputText, isLogged: true });
-    setNameInputText('')
+    setNameInputText("");
     history.push(route.home);
   };
 
-  const placeholder = useIntl().formatMessage({id: messageIds.namePlaceholder})
-  const buttonName = useIntl().formatMessage({id: messageIds.btnContinue})
+  const placeholder = useIntl().formatMessage({
+    id: messageIds.namePlaceholder,
+  });
+  const buttonName = useIntl().formatMessage({ id: messageIds.btnContinue });
 
   return (
-    <CenterDiv>
-      <Title>
-        <FormattedMessage id={messageIds.inputName} />
-      </Title>
-      <InputForm
-        value={nameInputText}
-        placeholder={placeholder}
-        onChange={handleChangeInput}
-        theme={theme}
-      />
-      <ButtonForm
-        buttonName={buttonName}
-        onClick={handleLoginUser}
-      />
-    </CenterDiv>
+    <Container>
+      <CenterDiv>
+        <Title>
+          <FormattedMessage id={messageIds.inputName} />
+        </Title>
+        <InputForm
+          value={nameInputText}
+          placeholder={placeholder}
+          onChange={handleChangeInput}
+          theme={theme}
+        />
+        <ButtonForm buttonName={buttonName} onClick={handleLoginUser} />
+      </CenterDiv>
+    </Container>
   );
 };
 

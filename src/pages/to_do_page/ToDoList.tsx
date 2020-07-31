@@ -1,4 +1,10 @@
-import React, { useState, ChangeEvent, useContext } from "react";
+import React, {
+  useState,
+  ChangeEvent,
+  useContext,
+  useEffect,
+  useRef,
+} from "react";
 import InputForm from "../../components/input/InputForm";
 import ButtonForm from "../../components/button/ButtonForm";
 import { CenterDiv } from "../../constants/styleConstants";
@@ -7,14 +13,24 @@ import SingleTodo from "../../components/single_todo/SingleTodo";
 import { messageIds } from "../../constants/generalContants";
 import { AppContext } from "../../context/AppContext";
 import SidebarMenu from "../../components/sidebar/SidebarMenu";
+import styled from "styled-components";
 
 const { FormattedMessage, useIntl } = require("react-intl");
 const { v4: uuid } = require("uuid");
 
+const ContainerComponent = styled.div`
+  height: 100vh;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: start;
+  padding-top: 120px;
+`;
+
 const ToDoList = () => {
   const [toDoInputText, setToDoInputText] = useState("");
   const [allToDos, setAllToDos] = useState<ToDoInterface[]>([]);
-  const { theme } = useContext(AppContext);
+  const { theme, setIsMenuOpen } = useContext(AppContext);
 
   const handleToDoInputText = (e: ChangeEvent<HTMLInputElement>) => {
     setToDoInputText(e.target.value);
@@ -49,8 +65,13 @@ const ToDoList = () => {
   });
   const buttonName = useIntl().formatMessage({ id: messageIds.btnAddToDo });
 
+
+  const closeSidebar = () => {
+    setIsMenuOpen(false)
+  }
+
   return (
-    <div>
+    <ContainerComponent onClick={closeSidebar}>
       <CenterDiv>
         <InputForm
           value={toDoInputText}
@@ -75,7 +96,7 @@ const ToDoList = () => {
         )}
       </CenterDiv>
       <SidebarMenu />
-    </div>
+    </ContainerComponent>
   );
 };
 

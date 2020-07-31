@@ -37,10 +37,10 @@ const Dropdown = styled.div`
 `;
 
 const NavAppTodo = () => {
-  const { user, isMenuOpen, setIsMenuOpen } = useContext(AppContext);
+  const { user, setIsMenuOpen } = useContext(AppContext);
 
   const openMenu = () => {
-    setIsMenuOpen(!isMenuOpen)
+    setIsMenuOpen(true)
   };
 
   return (

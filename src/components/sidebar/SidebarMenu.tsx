@@ -37,7 +37,7 @@ const Label = styled.label`
 
 const Bottom = styled.div`
   position: absolute;
-  bottom: 120px;
+  bottom: 50px;
   width: 100%;
   text-align: center;
 `;
@@ -46,7 +46,6 @@ const Center = styled.div`
   width: 100%;
   display: flex;
   flex-direction: column;
-  margin-left: 30%;
 `;
 
 const SpanFlex = styled.span`
@@ -55,15 +54,40 @@ const SpanFlex = styled.span`
   margin: 20px 0;
 `;
 
+const ButtonCloseMenu = styled.button`
+  position: absolute;
+  top: 10px;
+  padding: 5px 10px;
+  text-align: center;
+  border: none;
+  border-radius: 20px;
+  background-color: ${colors.blue};
+  color: white;
+  right: 10px;
+  &:hover {
+    cursor: pointer;
+  }
+  &:focus {
+    outline: none;
+  }
+`;
+
 const SidebarMenu = () => {
-  const { user, setUser, isMenuOpen, theme } = useContext(AppContext);
+  const { user, setUser, isMenuOpen, setIsMenuOpen, theme } = useContext(
+    AppContext
+  );
 
   const logoutUser = () => setUser({ ...user, isLogged: false });
 
   const buttonName = useIntl().formatMessage({ id: messageIds.logout });
 
+  const stopPropagation = (e: React.MouseEvent) => {
+    e.stopPropagation();
+  };
+
   return (
-    <Sidebar isMenuOpen={isMenuOpen} theme={theme}>
+    <Sidebar isMenuOpen={isMenuOpen} theme={theme} onClick={stopPropagation}>
+      <ButtonCloseMenu onClick={() => setIsMenuOpen(false)}>x</ButtonCloseMenu>
       <Center>
         <span>
           <Label>
