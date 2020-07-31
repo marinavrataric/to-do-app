@@ -24,25 +24,23 @@ const AppTitle = styled.h2`
 const UserName = styled.span`
   color: white;
   font-size: 17px;
-  margin-left: 10px;
+  margin-left: 30px;
 `;
 
 const Dropdown = styled.div`
   font-size: 25px;
   color: white;
-  margin-right: 10px;
+  margin-right: 30px;
+  &:hover {
+    cursor: pointer;
+  }
 `;
 
 const NavAppTodo = () => {
-  const { user, setTheme, theme } = useContext(AppContext);
-
-  const toggleTheme = () => {
-    if (theme === "light") setTheme("dark");
-    else setTheme("light");
-  };
+  const { user, isMenuOpen, setIsMenuOpen } = useContext(AppContext);
 
   const openMenu = () => {
-    toggleTheme();
+    setIsMenuOpen(!isMenuOpen)
   };
 
   return (

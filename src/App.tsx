@@ -18,6 +18,7 @@ function App() {
 
   const [locale, setLocale] = useState("en");
   const [theme, setTheme] = useState("light");
+  const [isMenuOpen, setIsMenuOpen] = useState(false)
 
   return (
     <ThemeProvider theme={theme === "light" ? lightTheme : darkTheme}>
@@ -32,6 +33,8 @@ function App() {
               setLocale,
               theme,
               setTheme,
+              isMenuOpen,
+              setIsMenuOpen
             }}
           >
             {user.isLogged ? <NavAppTodo /> : <NavAppGreeting />}

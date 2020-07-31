@@ -1,10 +1,12 @@
-import React, { useState, ChangeEvent } from "react";
+import React, { useState, ChangeEvent, useContext } from "react";
 import InputForm from "../../components/input/InputForm";
 import ButtonForm from "../../components/button/ButtonForm";
 import { CenterDiv } from "../../constants/styleConstants";
 import { ToDoInterface } from "../../interfaces/ToDoInterface";
 import SingleTodo from "../../components/single_todo/SingleTodo";
 import { messageIds } from "../../constants/generalContants";
+import { AppContext } from "../../context/AppContext";
+import SidebarMenu from "../../components/sidebar/SidebarMenu";
 
 const { FormattedMessage, useIntl } = require("react-intl");
 const { v4: uuid } = require("uuid");
@@ -12,6 +14,7 @@ const { v4: uuid } = require("uuid");
 const ToDoList = () => {
   const [toDoInputText, setToDoInputText] = useState("");
   const [allToDos, setAllToDos] = useState<ToDoInterface[]>([]);
+  const { theme } = useContext(AppContext);
 
   const handleToDoInputText = (e: ChangeEvent<HTMLInputElement>) => {
     setToDoInputText(e.target.value);
@@ -41,30 +44,38 @@ const ToDoList = () => {
     setAllToDos(allToDosDeleted);
   };
 
-  const placeholder = useIntl().formatMessage({id: messageIds.toDoPlaceholder})
-  const buttonName = useIntl().formatMessage({id: messageIds.btnAddToDo})
+  const placeholder = useIntl().formatMessage({
+    id: messageIds.toDoPlaceholder,
+  });
+  const buttonName = useIntl().formatMessage({ id: messageIds.btnAddToDo });
 
   return (
-    <CenterDiv>
-      <InputForm
-        value={toDoInputText}
-        placeholder={placeholder}
-        onChange={handleToDoInputText}
-      />
-      <ButtonForm onClick={addNewToDo} buttonName={buttonName} />
-      {allToDos.length === 0 ? (
-        <h2><FormattedMessage id={messageIds.toDoInfo}/></h2>
-      ) : (
-        allToDos.map((toDo: ToDoInterface) => (
-          <SingleTodo
-            key={toDo.id}
-            toDo={toDo}
-            setToDoChecked={setToDoChecked}
-            deleteTodo={deleteTodo}
-          />
-        ))
-      )}
-    </CenterDiv>
+    <div>
+      <CenterDiv>
+        <InputForm
+          value={toDoInputText}
+          placeholder={placeholder}
+          onChange={handleToDoInputText}
+          theme={theme}
+        />
+        <ButtonForm onClick={addNewToDo} buttonName={buttonName} />
+        {allToDos.length === 0 ? (
+          <h2>
+            <FormattedMessage id={messageIds.toDoInfo} />
+          </h2>
+        ) : (
+          allToDos.map((toDo: ToDoInterface) => (
+            <SingleTodo
+              key={toDo.id}
+              toDo={toDo}
+              setToDoChecked={setToDoChecked}
+              deleteTodo={deleteTodo}
+            />
+          ))
+        )}
+      </CenterDiv>
+      <SidebarMenu />
+    </div>
   );
 };
 

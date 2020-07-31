@@ -37,11 +37,20 @@ const DeleteButton = styled.button`
   background-color: transparent;
   font-size: 18px;
   color: red;
+  &:hover {
+    cursor: pointer;
+  }
+  &:focus {
+    outline: none;
+  }
 `;
 
 const CheckkBox = styled.input`
   margin-left: 10px;
   z-index: 1;
+  &:hover {
+    cursor: pointer;
+  }
 `;
 
 interface Props {

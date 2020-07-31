@@ -6,6 +6,8 @@ export const colors = {
   blue: "#0081A1",
   white: "#FFFFFF",
   darkGray: "#292C30",
+  hoverBlue: '#036C86',
+  lightGray: '#545454',
 };
 
 export const CenterDiv = styled.div`

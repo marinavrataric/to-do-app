@@ -9,5 +9,7 @@ export const AppContext = createContext({
   locale: '',
   setLocale: (locale: string) => {},
   theme: 'light',
-  setTheme: (theme: string) => {}
+  setTheme: (theme: string) => {},
+  isMenuOpen: false,
+  setIsMenuOpen: (isMenuOpen: boolean) => {}
 });

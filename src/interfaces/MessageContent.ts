@@ -6,4 +6,7 @@ export interface MessageContent {
   toDoPlaceholder: string;
   btnAddToDo: string;
   toDoInfo: string;
+  language: string;
+  theme: string;
+  logout: string;
 }

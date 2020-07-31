@@ -14,19 +14,18 @@ const Title = styled.h2`
 `;
 
 const Greeting = () => {
-  const { user, setUser } = useContext(AppContext);
+  const { user, setUser, theme } = useContext(AppContext);
   const history = useHistory();
   const [nameInputText, setNameInputText] = useState("");
 
   const handleChangeInput = (e: ChangeEvent<HTMLInputElement>) => {
     setNameInputText(e.target.value)
-    setUser({ ...user, userName: nameInputText });
   };
 
   const handleLoginUser = () => {
-    user.userName && setUser({ ...user, isLogged: true });
-    history.push(route.home);
+    setUser({ userName: nameInputText, isLogged: true });
     setNameInputText('')
+    history.push(route.home);
   };
 
   const placeholder = useIntl().formatMessage({id: messageIds.namePlaceholder})
@@ -41,6 +40,7 @@ const Greeting = () => {
         value={nameInputText}
         placeholder={placeholder}
         onChange={handleChangeInput}
+        theme={theme}
       />
       <ButtonForm
         buttonName={buttonName}
